@@ -1,0 +1,18 @@
+import psutil
+
+# Get disk partitions
+disk_partitions = psutil.disk_partitions()
+
+for partition in disk_partitions:
+    # Get partition usage
+    partition_usage = psutil.disk_usage(partition.mountpoint)
+    
+    print(f"Disk: {partition.device}")
+    print(f"Mountpoint: {partition.mountpoint}")
+    print(f"File system type: {partition.fstype}")
+    print(f"Total size: {partition_usage.total / (1024*1024*1024):.2f} GB")
+    print(f"Used: {partition_usage.used / (1024*1024*1024):.2f} GB")
+    print(f"Free: {partition_usage.free / (1024*1024*1024):.2f} GB")
+    print()
+
+# CREATED WITH THE HELP OF OPEN-AI CHAT GPT: https://chat.openai.com/chat
